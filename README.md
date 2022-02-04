@@ -21,5 +21,5 @@ Team will be fully available at class time.  In addition, team will also meet at
 ## Work Plan
 Trello will be our tool to create and manage project tasks.
 
-## GitHiub Process
+## GitHub Process
 A Github was created and all members were added.  We have a merge rule so that 2 team member are required prior to merging a branch. Our practive will be to always have a staging branch and separate branches for significant features.  We will merge as often as a major feature is completed.
