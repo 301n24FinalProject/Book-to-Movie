@@ -23,3 +23,7 @@ Trello will be our tool to create and manage project tasks.
 
 ## GitHub Process
 A Github was created and all members were added.  We have a merge rule so that 2 team member are required prior to merging a branch. Our practive will be to always have a staging branch and separate branches for significant features.  We will merge as often as a major feature is completed.
+
+Presentation URL
+https://docs.google.com/presentation/d/1oXNgd6HXQwDc0yWJ5o4x3j-WLcdZ4Ac31Wml1E9lRqA/edit#slide=id.g2accd1c413_3_31
+
