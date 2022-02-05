@@ -1,4 +1,4 @@
-# Three-Amigos- Team Agreement (Marni Hager, Sergey Otryshko, Pedro Perez)
+# Book to Movie- Team Agreement (Marni Hager, Sergey Otryshko, Pedro Perez)
 
 ## Cooperation Plan
 1. Marni- Strengths: organized, detail oriented, logical, documentation. How we utilize the strengths: validate and test, comment code as needed. What do you want to get better at: connecting the front and back end, specifically when deploying to netlify and heroku.
