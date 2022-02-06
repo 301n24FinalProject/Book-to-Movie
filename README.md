@@ -22,3 +22,5 @@ User Saved Movies Page
 User Searched Movies Page
 
 ![user searched movies page](https://github.com/TresProgramadores/Book-to-Movie/blob/main/wireframes/User%20Searched%20Movie.png)
+
+![domain model](https://github.com/TresProgramadores/Book-to-Movie/blob/main/wireframes/Domain%20Model.png)
