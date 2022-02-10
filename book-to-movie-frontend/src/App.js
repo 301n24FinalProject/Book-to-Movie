@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Header from "./Header";
 import Footer from './Footer';
 import Search from "./Search";
+import Results from "./Results";
 
 
 const SERVER = process.env.REACT_APP_SERVER;
@@ -41,7 +42,7 @@ getBooksData = (booksResponse) => {
         <Switch>
           <Route exact path="/">
             <Search getMoviesData={this.getMoviesData} getBooksData={this.getBooksData}/>
-            {/* <Results/> */}
+            <Results moviesArray={this.state.moviesArray} booksArray={this.state.booksArray}/>
             </Route>
           <Route exact path="/profile"></Route>
           <Route exact path="/about"></Route>
