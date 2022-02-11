@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Image, Nav, Navbar } from 'react-bootstrap';
+import { Container, Image, Nav, Navbar, NavItem } from 'react-bootstrap';
 import logo from './images/book-logo.png';
+import { Link } from "react-router-dom";
 
 
 
@@ -8,7 +9,7 @@ export default class Header extends Component {
   render() {
     const { isAuthenticated, loginWithRedirect, logout } = this.props;
     return (
-      <Navbar bg="dark" variant="dark">
+      <Navbar collapseOnSelect bg="dark" variant="dark">
         <Container style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Navbar.Brand href="/"><Image
             src={logo}
@@ -19,15 +20,15 @@ export default class Header extends Component {
           />Book to Movie</Navbar.Brand>
           {isAuthenticated && (
             <Nav className="me-auto">
-              <Nav.Link to="/">Search</Nav.Link>
-              <Nav.Link to="/profile">My Saved List</Nav.Link>
-              <Nav.Link to="/about">About Us</Nav.Link>
+              <NavItem><Link to="/">Search</Link></NavItem>
+              <NavItem><Link to="/mySavedList" >My Saved List</Link></NavItem>
+              <NavItem><Link to="/about">About Us</Link></NavItem>
             </Nav>)}
           <Nav>
-            {!isAuthenticated && <Nav.Link onClick={loginWithRedirect}>Log In</Nav.Link>}
-            {isAuthenticated &&<Nav.Link onClick={() => logout({ returnTo: window.location.origin })}>
+            {!isAuthenticated && <Link to="/" onClick={loginWithRedirect}>Log In</Link>}
+            {isAuthenticated && <Link to="/" onClick={() => logout({ returnTo: window.location.origin })}>
               Log Out
-            </Nav.Link>}
+            </Link>}
           </Nav>
         </Container>
       </Navbar>
