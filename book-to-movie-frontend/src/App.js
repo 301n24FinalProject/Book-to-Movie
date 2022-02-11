@@ -7,6 +7,7 @@ import Header from "./Header";
 import Footer from './Footer';
 import Search from "./Search";
 import Results from "./Results";
+import MySavedList from './MySavedList';
 
 
 
@@ -51,14 +52,16 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               <Search getMoviesData={this.getMoviesData} getBooksData={this.getBooksData} />
-              <Results 
-              moviesArray={this.state.moviesArray} 
-              saveMovie={this.saveMovie} 
-              booksArray={this.state.booksArray} 
-              saveBook={this.saveBook}
-              /> 
+              <Results
+                moviesArray={this.state.moviesArray}
+                saveMovie={this.saveMovie}
+                booksArray={this.state.booksArray}
+                saveBook={this.saveBook}
+              />
             </Route>
-            <Route exact path="/mySavedList"></Route>
+            <Route exact path="/mySavedList">
+              <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} />
+            </Route>
             <Route exact path="/about"></Route>
             <Route exact path="/login"></Route>
           </Switch>
