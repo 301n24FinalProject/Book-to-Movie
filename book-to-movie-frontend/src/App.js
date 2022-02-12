@@ -2,12 +2,13 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { withAuth0 } from '@auth0/auth0-react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Header from "./Header";
 import Footer from './Footer';
 import Search from "./Search";
 import Results from "./Results";
 import MySavedList from './MySavedList';
+
 
 
 
@@ -43,14 +44,15 @@ class App extends React.Component {
 
 
   render() {
-    console.log('books', this.state.savedBooksArray)
-    console.log('movies', this.state.savedMoviesArray)
     return (
       <>
         <Router>
           <Header isAuthenticated={this.props.auth0.isAuthenticated} loginWithRedirect={this.props.auth0.loginWithRedirect} logout={this.props.auth0.logout} />
           <Switch>
             <Route exact path="/">
+              <Redirect to='/search' />
+            </Route>
+            <Route exact path="/search">
               <Search getMoviesData={this.getMoviesData} getBooksData={this.getBooksData} />
               <Results
                 moviesArray={this.state.moviesArray}
