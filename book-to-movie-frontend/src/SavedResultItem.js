@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 export default class SavedResultItem extends Component {
   render() {
@@ -12,6 +12,7 @@ export default class SavedResultItem extends Component {
             <Card.Img src={`${item.image}`} alt={`${item} cover`} style={styles.image}></Card.Img>
           </div>
           <Card.Text style={styles.text}>{item.description}</Card.Text>
+          <Button variant="dark" disabled={this.state.clicked} onClick={() => this.handleClick(item)}>{this.state.clicked ? 'Title Deleted' : 'Delete Title'}</Button>
         </Card.Body>
       </Card>
     )
