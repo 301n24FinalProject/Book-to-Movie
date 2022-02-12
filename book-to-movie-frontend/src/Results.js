@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import ResultItem from './ResultItem';
 
 export default class Results extends Component {
   render() {
     return (
-      <Container>
-        {this.props.booksArray.map((book, idx) =>
-          <div key={idx} style={{ display: 'flex', flexDirection: 'column', width: '30vw' }}>
-            <h3>{book.title}</h3>
-            <p>{book.description}</p>
-            <img src={`${book.image}`} alt="book cover" />
-            <Button onClick={() => this.props.saveBook(book)}>Add Title</Button>
-          </div>)}
-        {this.props.moviesArray.map((movie, idx) =>
-          <div key={idx} style={{ display: 'flex', flexDirection: 'column', width: '30vw' }}>
-            <h3>{movie.title}</h3>
-            <p>{movie.description}</p>
-            <img src={`${movie.image}`} alt="movie cover" />
-            <Button onClick={() => this.props.saveMovie(movie)}>Add Title</Button>
-          </div>
-        )}
+      <Container style={{ display: 'flex', flexDirection: 'row', minWidth: '90wv', justifyContent: 'space-between'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', width: '30vw', alignItems: 'center' }}>
+        {this.props.booksArray.length > 0 && <h2>Books</h2>}
+          {this.props.booksArray.map((book, idx) =>
+            <ResultItem key={idx} item={book} onClick={this.props.saveBook}/>)}
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', width: '30vw', alignItems: 'center' }}>
+        {this.props.moviesArray.length > 0 && <h2>Movies</h2>}
+          {this.props.moviesArray.map((movie, idx) =>
+            <ResultItem key={idx} item={movie} onClick={this.props.saveMovie}/>
+          )}
+        </div>
       </Container>
     )
   }
