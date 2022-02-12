@@ -8,10 +8,9 @@ import Footer from './Footer';
 import Search from "./Search";
 import Results from "./Results";
 import MySavedList from './MySavedList';
+import axios from 'axios';
 
-
-
-
+const SERVER = process.env.REACT_APP_SERVER;
 
 class App extends React.Component {
   constructor(props) {
@@ -32,15 +31,29 @@ class App extends React.Component {
     this.setState({ booksArray: booksResponse })
   }
 
-  saveBook = (book) => {
-    this.setState({ savedBooksArray: [...this.state.savedBooksArray, book] })
+  saveBook = async (book) => {
+    book.email = this.props.auth0.user?.email;
+    console.log(book);
+    const res = await this.props.auth0.getIdTokenClaims();
+    const jwt = res.__raw;
+    const config = {
+      headers: { 'Authorization': `Bearer ${jwt} `},
+      method: 'post',
+      baseURL: SERVER,
+      url: '/books',
+      data: book
+    }
+    try {
+      const response = await axios(config);
+      this.setState({ savedBooksArray: [...this.state.savedBooksArray, response.data] })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   saveMovie = (movie) => {
     this.setState({ savedMoviesArray: [...this.state.savedMoviesArray, movie] })
   }
-
-
 
 
   render() {
