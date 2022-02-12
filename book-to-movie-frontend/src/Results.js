@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
 import ResultItem from './ResultItem';
+import { withAuth0 } from '@auth0/auth0-react';
 
-export default class Results extends Component {
+class Results extends Component {
   render() {
     return (
       <Container style={{ display: 'flex', flexDirection: 'row', minWidth: '90wv', justifyContent: 'space-between'}}>
@@ -21,3 +22,5 @@ export default class Results extends Component {
     )
   }
 }
+
+export default withAuth0(Results);

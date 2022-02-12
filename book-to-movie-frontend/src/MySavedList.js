@@ -4,6 +4,8 @@ import SavedResultItem from './SavedResultItem';
 
 export default class MySavedList extends Component {
   render() {
+    console.log(this.props.savedBooksArray);
+    console.log(this.props.savedMoviesArray);
     return (
       <Container style={{ display: 'flex', flexDirection: 'row', minWidth: '90wv', justifyContent: 'space-between', marginTop: '3rem'}}>
       <div style={{ display: 'flex', flexDirection: 'column', width: '30vw', alignItems: 'center' }}>
