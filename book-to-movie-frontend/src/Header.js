@@ -9,8 +9,7 @@ export default class Header extends Component {
   render() {
     const { isAuthenticated, loginWithRedirect, logout } = this.props;
     return (
-      <div style={{  width: '100vw' }}>
-        <Navbar style={{ width: '100vw', padding: '0.5rem 2rem', display: 'flex', justifyContent: 'space-between' }} collapseOnSelect bg="dark" variant="dark">
+        <Navbar style={{ boxSizing: 'border-box', width: '100%', padding: '0.5rem 2rem', display: 'flex', justifyContent: 'space-between' }} collapseOnSelect bg="dark" variant="dark">
           <Navbar.Brand href="/"><Image
             src={logo}
             width="30"
@@ -29,7 +28,6 @@ export default class Header extends Component {
             {isAuthenticated && <Nav.Link onClick={() => logout({ returnTo: window.location.origin + '/search' })}> Log Out</Nav.Link>}
           </Nav>
         </Navbar>
-      </div>
     )
   }
 }
