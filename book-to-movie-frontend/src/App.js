@@ -51,10 +51,45 @@ class App extends React.Component {
     }
   }
 
-  saveMovie = (movie) => {
-    this.setState({ savedMoviesArray: [...this.state.savedMoviesArray, movie] })
+  saveMovie = async (movie) => {
+    movie.email = this.props.auth0.user?.email;
+    console.log(movie);
+    const res = await this.props.auth0.getIdTokenClaims();
+    const jwt = res.__raw;
+    const config = {
+      headers: { 'Authorization': `Bearer ${jwt} `},
+      method: 'post',
+      baseURL: SERVER,
+      url: '/movies',
+      data: movie
+    }
+    try {
+      const response = await axios(config);
+      this.setState({ savedMoviesArray: [...this.state.savedMoviesArray, response.data] })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
+  deleteBook = async (book) => {
+    book.email = this.props.auth0.user?.email;
+    console.log(book);
+    const res = await this.props.auth0.getIdTokenClaims();
+    const jwt = res.__raw;
+    const config = {
+      headers: { 'Authorization': `Bearer ${jwt} `},
+      method: 'delete',
+      baseURL: SERVER,
+      url: '/books',
+      data: book
+    }
+    try {
+      const response = await axios(config);
+      this.setState({ savedBooksArray: [...this.state.savedBooksArray, response.data] })
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   render() {
     return (
