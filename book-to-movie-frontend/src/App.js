@@ -114,11 +114,33 @@ class App extends React.Component {
       const response = await axios(config);
       if (response.status === 202) {
         const filteredBooks = this.state.savedBooksArray.filter(book => book._id !== id);
-        this.setState({ books: filteredBooks});
+        this.setState({ savedBooksArray: filteredBooks});
       }
     } catch (error) {
       console.log(error);
     }
+    this.getBooksfromDB();
+  }
+
+  deleteMovie = async (id) => {
+    const res = await this.props.auth0.getIdTokenClaims();
+    const jwt = res.__raw;
+    const config = {
+      headers: { 'Authorization': `Bearer ${jwt} `},
+      method: 'delete',
+      baseURL: SERVER,
+      url: `/movies/${id}`
+    }
+    try {
+      const response = await axios(config);
+      if (response.status === 202) {
+        const filteredMovies = this.state.savedMoviesArray.filter(movie => movie._id !== id);
+        this.setState({ savedMoviesArray: filteredMovies});
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    this.getMoviesfromDB();
   }
 
 
@@ -142,7 +164,7 @@ class App extends React.Component {
               />
             </Route>
             <Route exact path="/mySavedList">
-              <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} deleteBook={this.deleteBook} />
+              <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} deleteBook={this.deleteBook} deleteMovie={this.deleteMovie} getBooksfromDB={this.getBooksfromDB} getMoviesfromDB={this.getMoviesfromDB}/>
             </Route>
             <Route exact path="/about"></Route>
             <Route exact path="/login"></Route>
