@@ -11,7 +11,7 @@ export default class MySavedList extends Component {
       <div style={{ display: 'flex', flexDirection: 'column', width: '30vw', alignItems: 'center' }}>
       {this.props.savedBooksArray.length > 0 && <h2>Books</h2>}
         {this.props.savedBooksArray.map((book, idx) =>
-          <SavedResultItem key={idx} item={book} onClick={this.props.saveBook}/>)}
+          <SavedResultItem key={idx} item={book} onClick={this.props.saveBook} deleteBook={this.props.deleteBook} />)}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', width: '30vw', alignItems: 'center' }}>
       {this.props.savedMoviesArray.length > 0 && <h2>Movies</h2>}

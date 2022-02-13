@@ -71,21 +71,21 @@ class App extends React.Component {
     }
   }
 
-  deleteBook = async (book) => {
-    book.email = this.props.auth0.user?.email;
-    console.log(book);
+  deleteBook = async (id) => {
     const res = await this.props.auth0.getIdTokenClaims();
     const jwt = res.__raw;
     const config = {
       headers: { 'Authorization': `Bearer ${jwt} `},
       method: 'delete',
       baseURL: SERVER,
-      url: '/books',
-      data: book
+      url: `/books/${id}`
     }
     try {
       const response = await axios(config);
-      this.setState({ savedBooksArray: [...this.state.savedBooksArray, response.data] })
+      if (response.status === 202) {
+        const filteredBooks = this.state.savedBooksArray.filter(book => book._id !== id);
+        this.setState({ books: filteredBooks});
+      }
     } catch (error) {
       console.log(error);
     }
@@ -110,7 +110,7 @@ class App extends React.Component {
               />
             </Route>
             <Route exact path="/mySavedList">
-              <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} />
+              <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} deleteBook={this.deleteBook} />
             </Route>
             <Route exact path="/about"></Route>
             <Route exact path="/login"></Route>
