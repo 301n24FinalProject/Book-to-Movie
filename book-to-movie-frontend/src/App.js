@@ -31,6 +31,38 @@ class App extends React.Component {
     this.setState({ booksArray: booksResponse })
   }
 
+  getBooksfromDB = async () => {
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+        headers: { 'Authorization': `Bearer ${jwt}`},
+        method: 'get',
+        baseURL: SERVER,
+        url: '/books',
+      }
+      const response = await axios (config);
+      console.log('Server Response:',response.data);
+      this.setState({ savedBooksArray: response.data});
+    }
+  }
+
+  getMoviesfromDB = async () => {
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+        headers: { 'Authorization': `Bearer ${jwt}`},
+        method: 'get',
+        baseURL: SERVER,
+        url: '/movies',
+      }
+      const response = await axios (config);
+      console.log('Server Response:',response.data);
+      this.setState({ savedMoviesArray: response.data});
+    }
+  }
+
   saveBook = async (book) => {
     book.email = this.props.auth0.user?.email;
     console.log(book);
@@ -44,8 +76,7 @@ class App extends React.Component {
       data: book
     }
     try {
-      const response = await axios(config);
-      this.setState({ savedBooksArray: [...this.state.savedBooksArray, response.data] })
+      await axios(config);
     } catch (error) {
       console.log(error);
     }
@@ -64,8 +95,7 @@ class App extends React.Component {
       data: movie
     }
     try {
-      const response = await axios(config);
-      this.setState({ savedMoviesArray: [...this.state.savedMoviesArray, response.data] })
+      await axios(config);
     } catch (error) {
       console.log(error);
     }
@@ -90,6 +120,8 @@ class App extends React.Component {
       console.log(error);
     }
   }
+
+
 
   render() {
     return (

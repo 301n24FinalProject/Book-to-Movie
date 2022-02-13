@@ -3,6 +3,13 @@ import { Container } from 'react-bootstrap';
 import SavedResultItem from './SavedResultItem';
 
 export default class MySavedList extends Component {
+
+  componentDidMount() {
+    this.props.getBooksfromDB();
+    this.props.getMoviesfromDB();
+  }
+
+
   render() {
     console.log(this.props.savedBooksArray);
     console.log(this.props.savedMoviesArray);
