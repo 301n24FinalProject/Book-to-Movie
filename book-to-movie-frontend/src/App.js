@@ -32,7 +32,10 @@ class App extends React.Component {
   }
 
   getBooksfromDB = async () => {
+    console.log('getbooksfrom db')
+    console.log(this.props.auth0.isAuthenticated)
     if (this.props.auth0.isAuthenticated) {
+      console.log('user authenticated')
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
       const config = {
@@ -42,7 +45,7 @@ class App extends React.Component {
         url: '/books',
       }
       const response = await axios (config);
-      console.log('Server Response:',response.data);
+      console.log('Server Response:', response.data);
       this.setState({ savedBooksArray: response.data});
     }
   }
@@ -167,8 +170,6 @@ class App extends React.Component {
       console.log(error);
     }
   }
-
-  
 
 
   render() {

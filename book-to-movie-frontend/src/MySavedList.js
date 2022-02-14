@@ -1,4 +1,4 @@
-import { withAuth0 } from '@auth0/auth0-react';
+import { withAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import React, { Component } from 'react';
 import { Container, Modal } from 'react-bootstrap';
 import SavedResultItem from './SavedResultItem';
@@ -47,4 +47,4 @@ import UpdateResultItem from './UpdateResultItem';
   }
 }
 
-export default withAuth0(MySavedList)
+export default withAuthenticationRequired(MySavedList)
