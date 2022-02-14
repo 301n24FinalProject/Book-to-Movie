@@ -10,12 +10,12 @@ class Results extends Component {
         <div style={{ display: 'flex', flexDirection: 'column', width: '30vw', alignItems: 'center' }}>
         {this.props.booksArray.length > 0 && <h2>Books</h2>}
           {this.props.booksArray.map((book, idx) =>
-            <ResultItem key={idx} item={book} onClick={this.props.saveBook}/>)}
+            <ResultItem key={`${book.title}-${idx}`} item={book} onClick={this.props.saveBook}/>)}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', width: '30vw', alignItems: 'center' }}>
         {this.props.moviesArray.length > 0 && <h2>Movies</h2>}
           {this.props.moviesArray.map((movie, idx) =>
-            <ResultItem key={idx} item={movie} onClick={this.props.saveMovie}/>
+            <ResultItem key={`${movie.title}-${idx}`} item={movie} onClick={this.props.saveMovie}/>
           )}
         </div>
       </Container>

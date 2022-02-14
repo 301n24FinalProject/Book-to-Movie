@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+// import './App.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Header from "./Header";
@@ -143,6 +143,32 @@ class App extends React.Component {
     this.getMoviesfromDB();
   }
 
+  updateItem = async (item) => {
+    console.log('update item', item)
+    const res = await this.props.auth0.getIdTokenClaims();
+    const jwt = res.__raw;
+    const config = {
+      headers: { 'Authorization': `Bearer ${jwt} `},
+      method: 'put',
+      baseURL: SERVER,
+      url: `/${item.type}s/${item._id}`,
+      data: item
+    }
+    try {
+      await axios(config);
+      if (item.type === 'book') {
+        const updatedBooks = this.state.savedBooksArray.map(book => book._id === item._id ? item : book)
+        this.setState({savedBooksArray: updatedBooks})
+      } else {
+        const updatedMovies = this.state.savedMoviesArray.map(movie => movie._id === item._id ? item : movie)
+        this.setState({savedMoviesArray: updatedMovies})
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  
 
 
   render() {
@@ -164,7 +190,7 @@ class App extends React.Component {
               />
             </Route>
             <Route exact path="/mySavedList">
-              <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} deleteBook={this.deleteBook} deleteMovie={this.deleteMovie} getBooksfromDB={this.getBooksfromDB} getMoviesfromDB={this.getMoviesfromDB}/>
+              <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} deleteBook={this.deleteBook} deleteMovie={this.deleteMovie} getBooksfromDB={this.getBooksfromDB} getMoviesfromDB={this.getMoviesfromDB} updateItem={this.updateItem}/>
             </Route>
             <Route exact path="/about"></Route>
             <Route exact path="/login"></Route>

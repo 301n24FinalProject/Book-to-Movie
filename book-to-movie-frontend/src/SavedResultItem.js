@@ -3,14 +3,8 @@ import { Card, Button } from 'react-bootstrap';
 
 export default class SavedResultItem extends Component {
 
-
-  handleDelete = (id) => {
-    this.props.deleteBook(id)
-    this.props.deleteMovie(id)
-  }
-
   render() {
-    const { item } = this.props
+    const { item, deleteItem, addNote } = this.props
     return (
       <Card style={styles.card}>
         <Card.Title>{item.title}</Card.Title>
@@ -19,7 +13,10 @@ export default class SavedResultItem extends Component {
             <Card.Img src={`${item.image}`} alt={`${item} cover`} style={styles.image}></Card.Img>
           </div>
           <Card.Text style={styles.text}>{item.description}</Card.Text>
-          <Button variant="danger" onClick={() => this.handleDelete(item._id)}>Delete Title</Button>
+          {item.notes && 
+          <Card.Text>{item.notes}</Card.Text>}
+          <Button variant="danger" onClick={() => deleteItem(item._id)}>Delete Title</Button>
+          <Button variant="dark" onClick={addNote}>Add Notes</Button>
         </Card.Body>
       </Card>
     )
