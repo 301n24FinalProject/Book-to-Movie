@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 
 export default class ResultItem extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export default class ResultItem extends Component {
   render() {
     const { item } = this.props
     return (
-      <Card style={styles.card}>
+      <Card bg='light' text='dark' style={styles.card}>
         <Card.Title>{item.title}</Card.Title>
         <Card.Body style={styles.body}>
           <div style={styles.imageContainer}>
