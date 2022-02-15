@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Modal, Card, Button, Image} from 'react-bootstrap';
+import { Button, Image, Modal } from 'react-bootstrap';
 
 
 export default class UpdateResultItem extends Component {
@@ -10,23 +10,23 @@ export default class UpdateResultItem extends Component {
     }
   }
 
-  
+
   render() {
-    const { show, onHide, item, saveNote } = this.props
+    const { show, onHide, item, saveNote, closeModal } = this.props
     return (
-      <Modal centered size='md' show={show} onHide={onHide}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Note</Modal.Title>
+      <Modal style={{ height: '1000px', display: 'flex', flexDirection: 'column', alignItems: 'space-between', justifyContent: 'center', position: 'absolute', top: '10rem' }} centered size='md' show={show} onHide={onHide} >
+        <Modal.Header>
+          <Modal.Title style={{ textAlign: 'center' }}>Add Notes</Modal.Title>
+          <Button variant='dark' style={{ position: 'absolute', top: '10px', right: '10px' }} onClick={closeModal}>X</Button>
         </Modal.Header>
-        <Modal.Body>
-        <h2>{item?.title}</h2>
-          <div >
-            <Image src={`${item?.image}`} alt={`${item} cover`} />
-          </div>
-          <p>{item?.description}</p>
-        <textarea rows="3" cols="50" defaultValue={item?.notes} onChange={(event) => this.setState({noteText: event.target.value})}></textarea>
-        <Button variant="dark" onClick={() => saveNote(this.state.noteText)}>Save</Button>
+        <Modal.Body style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <h3>{item?.title}</h3>
+          <Image src={`${item?.image}`} alt={`${item?.title} cover`} style={{ height: '200px', width: '130px', marginTop: '1rem' }} />
+          <p style={{ height: '150px', width: '420px', overflow: 'auto', margin: '2rem 0' }}>{item?.description}</p>
+          <textarea rows="3" cols="55" defaultValue={item?.notes} onChange={(event) => this.setState({ noteText: event.target.value })}></textarea>
+          <Button style={{ display: 'block', marginTop: '1rem' }} variant="dark" onClick={() => saveNote(this.state.noteText)}>Save</Button>
         </Modal.Body>
+
       </Modal>
     )
   }

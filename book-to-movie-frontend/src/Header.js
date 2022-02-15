@@ -1,13 +1,13 @@
 import { withAuth0 } from '@auth0/auth0-react';
 import React, { Component } from 'react';
-import { Container, Image, Nav, Navbar } from 'react-bootstrap';
+import { Image, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import logo from './images/book-logo.png';
 
 
 
 class Header extends Component {
-  
+
   render() {
     const { isAuthenticated, loginWithRedirect, logout } = this.props;
     return (

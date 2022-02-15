@@ -1,14 +1,14 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 // import './App.css';
 import { withAuth0 } from '@auth0/auth0-react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import Header from "./Header";
-import Footer from './Footer';
-import Search from "./Search";
-import Results from "./Results";
-import MySavedList from './MySavedList';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import Footer from './Footer';
+import Header from "./Header";
+import MySavedList from './MySavedList';
+import Results from "./Results";
+import Search from "./Search";
 
 const SERVER = process.env.REACT_APP_SERVER;
 
@@ -32,21 +32,18 @@ class App extends React.Component {
   }
 
   getBooksfromDB = async () => {
-    console.log('getbooksfrom db')
-    console.log(this.props.auth0.isAuthenticated)
     if (this.props.auth0.isAuthenticated) {
-      console.log('user authenticated')
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
       const config = {
-        headers: { 'Authorization': `Bearer ${jwt}`},
+        headers: { 'Authorization': `Bearer ${jwt}` },
         method: 'get',
         baseURL: SERVER,
         url: '/books',
       }
-      const response = await axios (config);
+      const response = await axios(config);
       console.log('Server Response:', response.data);
-      this.setState({ savedBooksArray: response.data});
+      this.setState({ savedBooksArray: response.data });
     }
   }
 
@@ -55,24 +52,23 @@ class App extends React.Component {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
       const config = {
-        headers: { 'Authorization': `Bearer ${jwt}`},
+        headers: { 'Authorization': `Bearer ${jwt}` },
         method: 'get',
         baseURL: SERVER,
         url: '/movies',
       }
-      const response = await axios (config);
-      console.log('Server Response:',response.data);
-      this.setState({ savedMoviesArray: response.data});
+      const response = await axios(config);
+      console.log('Server Response:', response.data);
+      this.setState({ savedMoviesArray: response.data });
     }
   }
 
   saveBook = async (book) => {
     book.email = this.props.auth0.user?.email;
-    console.log(book);
     const res = await this.props.auth0.getIdTokenClaims();
     const jwt = res.__raw;
     const config = {
-      headers: { 'Authorization': `Bearer ${jwt} `},
+      headers: { 'Authorization': `Bearer ${jwt} ` },
       method: 'post',
       baseURL: SERVER,
       url: '/books',
@@ -87,11 +83,10 @@ class App extends React.Component {
 
   saveMovie = async (movie) => {
     movie.email = this.props.auth0.user?.email;
-    console.log(movie);
     const res = await this.props.auth0.getIdTokenClaims();
     const jwt = res.__raw;
     const config = {
-      headers: { 'Authorization': `Bearer ${jwt} `},
+      headers: { 'Authorization': `Bearer ${jwt} ` },
       method: 'post',
       baseURL: SERVER,
       url: '/movies',
@@ -108,7 +103,7 @@ class App extends React.Component {
     const res = await this.props.auth0.getIdTokenClaims();
     const jwt = res.__raw;
     const config = {
-      headers: { 'Authorization': `Bearer ${jwt} `},
+      headers: { 'Authorization': `Bearer ${jwt} ` },
       method: 'delete',
       baseURL: SERVER,
       url: `/books/${id}`
@@ -117,7 +112,7 @@ class App extends React.Component {
       const response = await axios(config);
       if (response.status === 202) {
         const filteredBooks = this.state.savedBooksArray.filter(book => book._id !== id);
-        this.setState({ savedBooksArray: filteredBooks});
+        this.setState({ savedBooksArray: filteredBooks });
       }
     } catch (error) {
       console.log(error);
@@ -129,7 +124,7 @@ class App extends React.Component {
     const res = await this.props.auth0.getIdTokenClaims();
     const jwt = res.__raw;
     const config = {
-      headers: { 'Authorization': `Bearer ${jwt} `},
+      headers: { 'Authorization': `Bearer ${jwt} ` },
       method: 'delete',
       baseURL: SERVER,
       url: `/movies/${id}`
@@ -138,7 +133,7 @@ class App extends React.Component {
       const response = await axios(config);
       if (response.status === 202) {
         const filteredMovies = this.state.savedMoviesArray.filter(movie => movie._id !== id);
-        this.setState({ savedMoviesArray: filteredMovies});
+        this.setState({ savedMoviesArray: filteredMovies });
       }
     } catch (error) {
       console.log(error);
@@ -147,11 +142,10 @@ class App extends React.Component {
   }
 
   updateItem = async (item) => {
-    console.log('update item', item)
     const res = await this.props.auth0.getIdTokenClaims();
     const jwt = res.__raw;
     const config = {
-      headers: { 'Authorization': `Bearer ${jwt} `},
+      headers: { 'Authorization': `Bearer ${jwt} ` },
       method: 'put',
       baseURL: SERVER,
       url: `/${item.type}s/${item._id}`,
@@ -161,10 +155,10 @@ class App extends React.Component {
       await axios(config);
       if (item.type === 'book') {
         const updatedBooks = this.state.savedBooksArray.map(book => book._id === item._id ? item : book)
-        this.setState({savedBooksArray: updatedBooks})
+        this.setState({ savedBooksArray: updatedBooks })
       } else {
         const updatedMovies = this.state.savedMoviesArray.map(movie => movie._id === item._id ? item : movie)
-        this.setState({savedMoviesArray: updatedMovies})
+        this.setState({ savedMoviesArray: updatedMovies })
       }
     } catch (error) {
       console.log(error);
@@ -173,8 +167,9 @@ class App extends React.Component {
 
 
   render() {
+    console.log(this.props.auth0.user)
     return (
-      <>
+      <div style={{ marginBottom: '2rem' }}>
         <Router>
           <Header isAuthenticated={this.props.auth0.isAuthenticated} loginWithRedirect={this.props.auth0.loginWithRedirect} logout={this.props.auth0.logout} />
           <Switch>
@@ -191,14 +186,14 @@ class App extends React.Component {
               />
             </Route>
             <Route exact path="/mySavedList">
-              <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} deleteBook={this.deleteBook} deleteMovie={this.deleteMovie} getBooksfromDB={this.getBooksfromDB} getMoviesfromDB={this.getMoviesfromDB} updateItem={this.updateItem}/>
+              <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} deleteBook={this.deleteBook} deleteMovie={this.deleteMovie} getBooksfromDB={this.getBooksfromDB} getMoviesfromDB={this.getMoviesfromDB} updateItem={this.updateItem} user={this.props.auth0.user} />
             </Route>
             <Route exact path="/about"></Route>
             <Route exact path="/login"></Route>
           </Switch>
           <Footer />
         </Router>
-      </>
+      </div>
     )
   }
 }
