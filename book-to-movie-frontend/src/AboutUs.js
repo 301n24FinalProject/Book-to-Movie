@@ -76,5 +76,4 @@ imageContainer: { minHeight: '250px' },
 text: { height: '200px', overflowY: 'auto', marginTop: '-3rem'},
 }
 
-
 export default withAuth0(AboutUs);
