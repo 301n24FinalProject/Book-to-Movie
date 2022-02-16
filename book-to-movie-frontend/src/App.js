@@ -9,6 +9,7 @@ import Header from "./Header";
 import MySavedList from './MySavedList';
 import Results from "./Results";
 import Search from "./Search";
+import AboutUs from "./AboutUs";
 
 const SERVER = process.env.REACT_APP_SERVER;
 
@@ -188,7 +189,7 @@ class App extends React.Component {
             <Route exact path="/mySavedList">
               <MySavedList savedBooksArray={this.state.savedBooksArray} savedMoviesArray={this.state.savedMoviesArray} deleteBook={this.deleteBook} deleteMovie={this.deleteMovie} getBooksfromDB={this.getBooksfromDB} getMoviesfromDB={this.getMoviesfromDB} updateItem={this.updateItem} user={this.props.auth0.user} />
             </Route>
-            <Route exact path="/about"></Route>
+            <Route exact path="/about"><AboutUs/></Route>
             <Route exact path="/login"></Route>
           </Switch>
           <Footer />
