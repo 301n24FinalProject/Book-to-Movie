@@ -28,7 +28,7 @@ export default class Search extends Component {
         <Form onSubmit={this.handleSearchSubmit} >
           <Form.Group className="mb-3" controlId="searchBar">
             <Form.Label></Form.Label>
-            <Form.Control style={{ minWidth: '50rem' }} placeholder="Enter Title" type="text" size="md"></Form.Control>
+            <Form.Control style={{ minWidth: '40rem' }} placeholder="Enter Title" type="text" size="md"></Form.Control>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Button style={{ margin: '2rem' }} type="submit" variant='dark'>Search</Button>
             </div>

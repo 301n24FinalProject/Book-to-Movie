@@ -176,14 +176,16 @@ class App extends React.Component {
           <Header isAuthenticated={this.props.auth0.isAuthenticated} loginWithRedirect={this.props.auth0.loginWithRedirect} logout={this.props.auth0.logout} />
           <Switch>
             <Route exact path="/">
-              <Redirect to='/search' />
+              <Redirect to='/landing' />
             </Route>
-            <Route exact path="/landing"><Landing getMoviesData={this.getMoviesData} getBooksData={this.getBooksData}
-                moviesArray={this.state.moviesArray}
-                saveMovie={this.saveMovie}
-                booksArray={this.state.booksArray}
-                saveBook={this.saveBook}
-              /></Route>
+            <Route exact path="/landing"><Landing
+              getMoviesData={this.getMoviesData}
+              getBooksData={this.getBooksData}
+              moviesArray={this.state.moviesArray}
+              saveMovie={this.saveMovie}
+              booksArray={this.state.booksArray}
+              saveBook={this.saveBook}
+            /></Route>
             <Route exact path="/search">
               <Search getMoviesData={this.getMoviesData} getBooksData={this.getBooksData} />
               <Results

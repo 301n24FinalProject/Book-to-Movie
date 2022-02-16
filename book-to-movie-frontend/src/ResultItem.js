@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import { withAuth0 } from '@auth0/auth0-react';
 
-export default class ResultItem extends Component {
+class ResultItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -23,7 +24,9 @@ export default class ResultItem extends Component {
             <Card.Img src={`${item.image}`} alt={`${item} cover`} style={styles.image}></Card.Img>
           </div>
           <Card.Text style={styles.text}>{item.description}</Card.Text>
+          {this.props.auth0.isAuthenticated && 
           <Button variant="dark" disabled={this.state.clicked} onClick={() => this.handleClick(item)}>{this.state.clicked ? 'Title Added' : 'Add Title'}</Button>
+          }
         </Card.Body>
       </Card>
     )
@@ -37,3 +40,5 @@ const styles = {
   imageContainer: { minHeight: '350px' },
   text: { height: '150px', overflowY: 'auto' }
 }
+
+export default withAuth0(ResultItem);
