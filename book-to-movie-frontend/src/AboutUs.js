@@ -14,7 +14,7 @@ class AboutUs extends Component {
       <Container fluid style= {{ display: 'flex', flexDirection: 'row' , justifyContent: 'center', width: '75%', alignItems: 'justify', height: '100vh', marginTop: '20rem'}}>
       {/* <Row> */}
       <Card bg='light' text='dark' style={styles.card}>
-      <Card.Title style={{ marginTop: '2rem' } , { fontSize: '2rem' }} >
+      <Card.Title style={{ marginTop: '2rem', fontSize: '2rem' }} >
         {"Marni Hager"}
         <ul></ul>
         <Row style={{justifyContent: 'space-between'}}>
@@ -30,7 +30,7 @@ class AboutUs extends Component {
       </Card.Body>
       </Card>
       <Card bg='light' text='dark' style={styles.card}>
-      <Card.Title style={{ marginTop: '2rem' } , { fontSize: '2rem' }} >
+      <Card.Title style={{ marginTop: '2rem', fontSize: '2rem' }} >
         {"Sergii Otryshko"}
         <ul></ul>
         <Row style={{justifyContent: 'space-between'}}>
@@ -46,7 +46,7 @@ class AboutUs extends Component {
       </Card.Body>
       </Card>
       <Card bg='light' text='dark' style={styles.card} >
-      <Card.Title style={{ marginTop: '2rem' } , { fontSize: '2rem' }} >
+      <Card.Title style={{ marginTop: '2rem', fontSize: '2rem' }} >
         {"Pedro G. Perez"}
         <ul></ul>
         <Row style={{justifyContent: 'space-between'}}>

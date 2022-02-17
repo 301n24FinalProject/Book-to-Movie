@@ -1,4 +1,4 @@
-import { withAuthenticationRequired, withAuth0 } from '@auth0/auth0-react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import React, { Component } from 'react';
 import { Container, Image } from 'react-bootstrap';
 import SavedResultItem from './SavedResultItem';

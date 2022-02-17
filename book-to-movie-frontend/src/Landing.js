@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
-import { Container, Card, Image, ListGroup } from 'react-bootstrap';
-import Search from './Search.js';
+import { Container, Image, ListGroup } from 'react-bootstrap';
 import Results from './Results.js';
+import Search from './Search.js';
 
 export default class Landing extends Component {
 
