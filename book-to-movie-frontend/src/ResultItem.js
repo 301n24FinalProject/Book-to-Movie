@@ -24,8 +24,8 @@ class ResultItem extends Component {
             <Card.Img src={`${item.image}`} alt={`${item} cover`} style={styles.image}></Card.Img>
           </div>
           <Card.Text style={styles.text}>{item.description}</Card.Text>
-          {this.props.auth0.isAuthenticated && 
-          <Button variant="dark" disabled={this.state.clicked} onClick={() => this.handleClick(item)}>{this.state.clicked ? 'Title Added' : 'Add Title'}</Button>
+          {this.props.auth0.isAuthenticated &&
+            <Button variant="dark" disabled={this.state.clicked} onClick={() => this.handleClick(item)}>{this.state.clicked ? 'Title Added' : 'Add Title'}</Button>
           }
         </Card.Body>
       </Card>

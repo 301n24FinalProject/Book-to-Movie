@@ -39,7 +39,7 @@ class MySavedList extends Component {
           <h3 style={{ display: 'block', textAlign: 'center' }}>{`Hi, ${this.props.user.given_name}!`}</h3>
           <Image src={this.props.user.picture} roundedCircle='true' style={{ margin: '1rem 0' }} />
           {(this.props.savedBooksArray.length > 0 || this.props.savedMoviesArray.length > 0) &&
-          <h3 style={{ display: 'block', textAlign: 'center' }}>Here's your saved list:</h3>}
+            <h3 style={{ display: 'block', textAlign: 'center' }}>Here's your saved list:</h3>}
         </Container>
         {(this.props.savedBooksArray.length === 0 && this.props.savedMoviesArray.length === 0) &&
           <Container style={{ minWidth: '100%' }}>
