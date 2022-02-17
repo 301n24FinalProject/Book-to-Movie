@@ -14,7 +14,7 @@ export default class UpdateResultItem extends Component {
   render() {
     const { show, onHide, item, saveNote, closeModal } = this.props
     return (
-      <Modal style={{ height: '1000px', display: 'flex', flexDirection: 'column', alignItems: 'space-between', justifyContent: 'center', position: 'absolute', top: '10rem' }} centered size='md' show={show} onHide={onHide} >
+      <Modal style={{ height: '1000px', display: 'flex', flexDirection: 'column', alignItems: 'space-between', justifyContent: 'center', top: '-5rem' }} centered size='md' show={show} onHide={onHide} >
         <Modal.Header>
           <Modal.Title style={{ textAlign: 'center' }}>Add Notes</Modal.Title>
           <Button variant='dark' style={{ position: 'absolute', top: '10px', right: '10px' }} onClick={closeModal}>X</Button>

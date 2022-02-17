@@ -27,7 +27,7 @@ class Header extends Component {
           </Nav>)}
         <Nav>
           {!isAuthenticated && <Nav.Link onClick={loginWithRedirect}>Log In</Nav.Link>}
-          {isAuthenticated && <Nav.Link onClick={() => logout({ returnTo: window.location.origin + '/search' })}> Log Out</Nav.Link>}
+          {isAuthenticated && <Nav.Link onClick={() => logout({ returnTo: window.location.origin + '/landing' })}> Log Out</Nav.Link>}
         </Nav>
       </Navbar>
     )
