@@ -69,9 +69,9 @@ class AboutUs extends Component {
 }
 
 const styles = {
-card: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', height: '575px', margin: '0rem 7rem', padding: '0rem', width: '400px' },
+card: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between', height: '575px', margin: '0rem 3rem', padding: '0rem', width: '400px' },
 body: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' },
-image: { width: '200px' , height: '200px'},
+image: { width: '200px' , height: '200px', objectFit: 'cover'},
 imageContainer: { minHeight: '250px' },
 text: { height: '200px', overflowY: 'auto', marginTop: '-3rem'},
 }
