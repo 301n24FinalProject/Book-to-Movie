@@ -19,7 +19,7 @@ export default class SavedResultItem extends Component {
               <Card.Text style={styles.notes}>{item.notes}</Card.Text>
             </div>)}
           <Button style={{ position: 'absolute', top: '10px', right: '10px', zIndex: '1000' }} variant="danger" onClick={() => deleteItem(item._id)}>Delete</Button>
-          <Button variant="dark" onClick={addNote}>Add Notes</Button>
+          <Button variant="dark" onClick={addNote}>{item.notes ? 'Edit Notes' : 'Add Notes'}</Button>
         </Card.Body>
       </Card>
     )

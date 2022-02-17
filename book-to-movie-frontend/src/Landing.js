@@ -37,7 +37,7 @@ export default class Landing extends Component {
           <Container>
             <ListGroup variant='flush' style={{ alignItems: 'center', width: '105%' }}>
               
-              <ListGroup variant="flush" style={{textAlign: 'center'}}>
+              <ListGroup variant="flush" style={{textAlign: 'center', fontStyle: 'italic'}}>
                 <ListGroup.Item>Are you a teacher, librarian, parent, or student that wants to know if a book has been turned into a movie or a movie was based on a book?  Our site gives you the ability to find out</ListGroup.Item>
                 <ListGroup.Item>Just type in the title in the search bar and you will get a list of books and movies with that title</ListGroup.Item>
                 <ListGroup.Item>Want to keep a list of books and movies?  Just click the "Add Title" button beneath the one you want and it will save to your list</ListGroup.Item>
